@@ -81,7 +81,7 @@ msg.channel.send(embed)
 
   
 
-if (command === 'çal') {
+if (command === 'play') {
   const voiceChannel = msg.member.voiceChannel;
   if (!voiceChannel) return msg.channel.send('Üzgünüm müzik açmam için senin bir sesli kanalda olman gerekli.');
   const permissions = voiceChannel.permissionsFor(msg.client.user);
