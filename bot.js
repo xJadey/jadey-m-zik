@@ -387,6 +387,12 @@ function play(guild, song) {
 }
 
 //////////////////
+
+client.on("ready", () => {
+    console.log("Ready !");
+    client.user.setActivity(`𝕜𝕕!𝕡𝕝𝕒𝕪 - 𝕤𝕖𝕟𝕚𝕟𝕝𝕖 𝕓𝕚𝕣𝕝𝕚𝕜𝕥𝕖`, {type: "LISTENING"})
+});
+
 client.elevation = message => {
   if (!message.guild) {
     return;
