@@ -126,7 +126,7 @@ bot.on("message", async msg => {
 
           msg.channel.sendEmbed(
             new Discord.RichEmbed()
-              .setTitle("Gnarge Bot | Şarkı Seçimi")
+              .setTitle("ENERGY MUSIC | Şarkı Seçimi")
               .setDescription(
                 `${videos
                   .map(video2 => `**${++index} -** ${video2.title}`)
@@ -249,7 +249,7 @@ bot.on("message", async msg => {
     return msg.channel.sendEmbed(
       new Discord.RichEmbed()
         .setColor("RANDOM")
-        .setTitle("Gnarge Bot | Çalan")
+        .setTitle("ENERGY MUSIC | Çalan")
         .addField(
           "Başlık",
           `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`,
@@ -273,7 +273,7 @@ bot.on("message", async msg => {
       .sendEmbed(
         new Discord.RichEmbed()
           .setColor("RANDOM")
-          .setTitle("Gnarge Bot | Şarkı Kuyruğu")
+          .setTitle("ENERGY MUSIC | Şarkı Kuyruğu")
           .setDescription(
             `${serverQueue.songs
               .map(song => `**${++index} -** ${song.title}`)
