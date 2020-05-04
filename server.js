@@ -15,7 +15,7 @@ const http = require('http');
 // -------------------------------------------------------------
 const Discord = require('discord.js')
 const { Client, Util } = require('discord.js')
-const PREFIX = "."
+const PREFIX = "kd!"
 const YouTube = require('simple-youtube-api')
 const ytdl = require('ytdl-core')
 
