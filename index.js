@@ -11,11 +11,11 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 const ytdl = require('ytdl-core');
 
 
-let prefix = "!";//botun ön eki 
-let owner = "334975384380506112";// sizin id'niz
+let prefix = "!kd";//botun ön eki 
+let owner = "349490660694425603";// sizin id'niz
 
 bot.on("ready", guild => {
-    bot.user.setActivity('Video Bot :)', { type: 'LISTENING'  })
+    bot.user.setActivity('Seninle Birlikle)', { type: 'LISTENING'  })
   .then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
   .catch(console.error);
     console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] BOT: Şu an ` + bot.channels.size + ` adet kanala, ` + bot.guilds.size + ` adet sunucuya ve ` + bot.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString() + ` kullanıcıya hizmet veriliyor!`);
