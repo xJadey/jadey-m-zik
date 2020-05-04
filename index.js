@@ -10,6 +10,7 @@ const queue = new Map();
 const youtube = new YouTube(GOOGLE_API_KEY);
 const ytdl = require('ytdl-core');
 
+
 let prefix = "!";//botun ön eki 
 let owner = "334975384380506112";// sizin id'niz
 
