@@ -188,7 +188,7 @@ The search is cancelled in \`10 seconds\` if no number provided.`)
                            .setTimestamp(new Date())
                           })
   //msg.channel.send(`Yo yo! I'm playing :notes: ,**${serverQueue.songs[0].title}**, :notes: currently!`);
-} else if (command === 'kuyruk' || command === `k`) {
+} else if (command === 'queue' || command === `k`) {
   if (!serverQueue) return msg.channel.send(':mailbox_with_no_mail: **Ne? Hiçbir şey oynamıyor mu ?**');
  return msg.channel.send({embed: new Discord.RichEmbed()
                            .setAuthor(msg.author.tag,msg.author.avatarURL)
