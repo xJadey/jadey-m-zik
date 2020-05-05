@@ -161,7 +161,7 @@ bot.on('message', async msg => {
     .setColor('RANDOM'));
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setColor('RANDOM')
-    .setTitle("GENERGY MUSIC  | Çalan")                            
+    .setTitle("ENERGY MUSIC  | Çalan")                            
     .addField('Başlık', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`, true)
     .addField("Süre", `${serverQueue.songs[0].durationm}:${serverQueue.songs[0].durations}`, true))
 	} else if (command === 'sıra') {
