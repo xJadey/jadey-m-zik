@@ -177,7 +177,7 @@ The search is cancelled in \`10 seconds\` if no number provided.`)
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send(`Ayarlanan ses düzeyi: **${args[1]}**`);
   
-} else if (command === 'playing' || command === 'şimdi-çalan') {
+} else if (command === 'playing' || command === 'song') {
   if (!serverQueue) return msg.channel.send(':mailbox_with_no_mail: **Bekle, müzik çalmıyor!**');
   return msg.channel.send({embed: new Discord.RichEmbed()
                            .setAuthor(msg.author.tag,msg.author.avatarURL)
