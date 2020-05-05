@@ -147,7 +147,7 @@ client.on("message", async msg => {
       }
       return handleVideo(video, msg, voiceChannel);
     }
-  } else if (command === "geç") {
+  } else if (command === "skip") {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -167,7 +167,7 @@ client.on("message", async msg => {
       );
     serverQueue.connection.dispatcher.end("**Müziği Geçtim!**");
     return undefined;
-  } else if (command === "durdur") {
+  } else if (command === "stop") {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -189,7 +189,7 @@ client.on("message", async msg => {
     serverQueue.songs = [];
     serverQueue.connection.dispatcher.end("**Müzik Bitti**");
     return undefined;
-  } else if (command === "ses") {
+  } else if (command === "volume") {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -218,7 +218,7 @@ client.on("message", async msg => {
         .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
         .setColor("RANDOM")
     );
-  } else if (command === "çalan") {
+  } else if (command === "playing") {
     if (!serverQueue)
       return msg.channel.sendEmbed(
         new Discord.RichEmbed()
@@ -240,7 +240,7 @@ client.on("message", async msg => {
           true
         )
     );
-  } else if (command === "sıra") {
+  } else if (command === "queue") {
     let index = 0;
     if (!serverQueue)
       return msg.channel.sendEmbed(
@@ -260,7 +260,7 @@ client.on("message", async msg => {
           )
       )
       .addField("Şu anda çalınan: " + `${serverQueue.songs[0].title}`);
-  } else if (command === "duraklat") {
+  } else if (command === "pause") {
     if (serverQueue && serverQueue.playing) {
       serverQueue.playing = false;
       serverQueue.connection.dispatcher.pause();
@@ -271,7 +271,7 @@ client.on("message", async msg => {
       );
     }
     return msg.channel.send(":warning: | **Çalan Müzik Bulunmamakta**");
-  } else if (command === "devam") {
+  } else if (command === "go") {
     if (serverQueue && !serverQueue.playing) {
       serverQueue.playing = true;
       serverQueue.connection.dispatcher.resume();

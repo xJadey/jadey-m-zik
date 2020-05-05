@@ -140,7 +140,7 @@ bot.on('message', async msg => {
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('**Müzik Bitti**');
 		return undefined;
-	} else if (command === 'ses') {
+	} else if (command === 'volume') {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setColor('RANDOM')
     .setDescription(':warning: **| Lütfen öncelikle sesli bir kanala katılınız.**'));
@@ -164,7 +164,7 @@ bot.on('message', async msg => {
     .setTitle("ENERGY MUSIC  | Çalan")                            
     .addField('Başlık', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`, true)
     .addField("Süre", `${serverQueue.songs[0].durationm}:${serverQueue.songs[0].durations}`, true))
-	} else if (command === 'sıra') {
+	} else if (command === 'queue') {
     let index = 0;
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(":warning: | **Sırada Müzik Bulunmamakta**")
@@ -183,7 +183,7 @@ bot.on('message', async msg => {
       .setColor('RANDOM'));
 		}
 		return msg.channel.send(':warning: | **Çalan Müzik Bulunmamakta**');
-	} else if (command === 'devam') {
+	} else if (command === 'playw') {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
 			serverQueue.connection.dispatcher.resume();
