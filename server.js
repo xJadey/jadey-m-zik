@@ -153,12 +153,12 @@ The search is cancelled in \`10 seconds\` if no number provided.`)
     return handleVideo(video, msg, voiceChannel)
   }
   }
-} else if (command === 'geç') {
+} else if (command === 'skip') {
   if (!msg.member.voiceChannel) return msg.channel.send(':red_circle: **Ses kanalında değil, ben seninle konuşuyorum**');
   if (!serverQueue) return msg.channel.send(':mailbox_with_no_mail: **Boş bir sırayı nasıl atlayayım.**');
   serverQueue.connection.dispatcher.end('Atla komutu kullanıldı.');
   return undefined;
-} else if (command === 'dur') {
+} else if (command === 'stop') {
   if (!msg.member.voiceChannel) return msg.channel.send(':red_circle: **Ses kanalında değil, ben seninle konuşuyorum**');
   if (!serverQueue) return msg.channel.send(':mailbox_with_no_mail: **Durmayacak bir şey yok, çünkü müzik yok!**');
   serverQueue.songs = [];
@@ -169,7 +169,7 @@ The search is cancelled in \`10 seconds\` if no number provided.`)
                     .setColor(eColor)
                    })
   return undefined;
-} else if (command === 'ses') {
+} else if (command === 'volume') {
 		if (!msg.member.voiceChannel) return msg.channel.send('Sesli kanalda değilsiniz!');
 		if (!serverQueue) return msg.channel.send('Çalan müzik bulunmamakta nasıl sesini düzenleyebilirsin ?');
 		if (!args[1]) return msg.channel.send(`Mevcut ses şiddeti: **${serverQueue.volume}**`);
@@ -177,7 +177,7 @@ The search is cancelled in \`10 seconds\` if no number provided.`)
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send(`Ayarlanan ses düzeyi: **${args[1]}**`);
   
-} else if (command === 'çalan' || command === 'şimdi-çalan') {
+} else if (command === 'playing' || command === 'şimdi-çalan') {
   if (!serverQueue) return msg.channel.send(':mailbox_with_no_mail: **Bekle, müzik çalmıyor!**');
   return msg.channel.send({embed: new Discord.RichEmbed()
                            .setAuthor(msg.author.tag,msg.author.avatarURL)
@@ -208,7 +208,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
 
 
-} else if (command === 'duraklat') {
+} else if (command === 'pause') {
   if (serverQueue && serverQueue.playing) {
     serverQueue.playing = false;
     serverQueue.connection.dispatcher.pause();
