@@ -120,7 +120,7 @@ bot.on('message', async msg => {
 			return handleVideo(video, msg, voiceChannel);
       
 		}
-	} else if (command === 'geç') {
+	} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setColor('RANDOM')
     .setDescription(':warning: | **Lütfen öncelikle sesli bir kanala katılınız**.'));
@@ -129,7 +129,7 @@ bot.on('message', async msg => {
      .setTitle(':warning: | **Hiç Bir Müzik Çalmamakta**'));                                              
 		serverQueue.connection.dispatcher.end('**Müziği Geçtim!**');
 		return undefined;
-	} else if (command === 'durdur') {
+	} else if (command === 'stop') {
 		if (!msg.member.voiceChannel) if (!msg.member.voiceChannel) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setColor('RANDOM')
     .setDescription('**:warning: | Lütfen öncelikle sesli bir kanala katılınız.**'));
@@ -155,7 +155,7 @@ bot.on('message', async msg => {
 		return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
     .setColor('RANDOM'));                             
-	} else if (command === 'çalan') {
+	} else if (command === 'playing') {
 		if (!serverQueue) return msg.channel.sendEmbed(new Discord.RichEmbed()
     .setTitle(":warning: | **Çalan Müzik Bulunmamakta**")
     .setColor('RANDOM'));
@@ -174,7 +174,7 @@ bot.on('message', async msg => {
      .setTitle('ENERGY MUSIC | Şarkı Kuyruğu')
     .setDescription(`${serverQueue.songs.map(song => `**${++index} -** ${song.title}`).join('\n')}`))
     .addField('Şu anda çalınan: ' + `${serverQueue.songs[0].title}`);
-	} else if (command === 'duraklat') {
+	} else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
