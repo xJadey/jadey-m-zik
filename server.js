@@ -306,4 +306,4 @@ const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
   dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);﻿
 }
 
-client.login("ayarlar.topken")
+client.login("ayarlar.token")
