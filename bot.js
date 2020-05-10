@@ -130,11 +130,49 @@ client.on("message", async msg => {
               )
               .setColor("0x36393E")
           );
-          msg.react('1️⃣');
-          msg.react('2️⃣');
-          msg.react('3️⃣');
-          msg.delete(20000);
+          msg.delete(5000);
           try {
+            
+  msg.channel.send("Deneme").then(async function(sentEmbed) {
+    const emojiArray = ["1️⃣", "2️⃣", "3️⃣"];
+    const filter = (reaction, user) =>
+      emojiArray.includes(reaction.emoji.name) && user.id === msg.author.id;
+    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    var reactions = sentEmbed.createReactionCollector(filter, {
+      time: 30000
+    });
+    reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!"));
+    reactions.on("collect", async function(reaction) {
+      if (reaction.emoji.name === "1️⃣") {
+        msg.channel.send(
+          `İşlem onaylandı!  adlı şahsın davetleri sıfırlandı!`
+        );
+
+        msg.channel.send("1 Seçildi")
+
+      }
+            if (reaction.emoji.name === "2️⃣") {
+        msg.channel.send(
+          `İşlem onaylandı!  adlı şahsın davetleri sıfırlandı!`
+        );
+
+        msg.channel.send("2 Seçildi")
+
+      }
+            if (reaction.emoji.name === "3️⃣") {
+        msg.channel.send(
+          `İşlem onaylandı!  adlı şahsın davetleri sıfırlandı!`
+        );
+
+        msg.channel.send("3 Seçildi")
+
+      }
+    });
+  });            
+            
+            
             var response = await msg.channel.awaitMessages(
               msg2 => msg2.content > 0 && msg2.content < 11,
               {
