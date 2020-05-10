@@ -28,6 +28,7 @@ var prefix = ayarlar.prefix;
 
 // ISIM \\
 const isimloz = "Code Music";
+const oynuyorloz = "Code Music";
 // ISIM \\
 
 // KOMUTLAR \\
@@ -40,6 +41,7 @@ const stoploz = "bitir";
 const pauseloz = "durdur";
 const goloz = "devam";
 // KOMUTLAR \\
+
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
@@ -117,7 +119,7 @@ client.on("message", async msg => {
 
           msg.channel.sendEmbed(
             new Discord.RichEmbed()
-              .setTitle("ENERGY MUSIC | Şarkı Seçimi")
+              .setTitle(`${isimloz} | Şarkı Seçimi`)
               .setDescription(
                 `${videos
                   .map(video2 => `**${++index} -** ${video2.title}`)
@@ -242,7 +244,7 @@ client.on("message", async msg => {
     return msg.channel.sendEmbed(
       new Discord.RichEmbed()
         .setColor("RANDOM")
-        .setTitle("GENERGY MUSIC  | Çalan")
+        .setTitle(`${isimloz} | Çalan`)
         .addField(
           "Başlık",
           `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`,
@@ -266,7 +268,7 @@ client.on("message", async msg => {
       .sendEmbed(
         new Discord.RichEmbed()
           .setColor("RANDOM")
-          .setTitle("ENERGY MUSIC | Şarkı Kuyruğu")
+          .setTitle(`${isimloz} | Şarkı Kuyruğu`)
           .setDescription(
             `${serverQueue.songs
               .map(song => `**${++index} -** ${song.title}`)
@@ -387,7 +389,7 @@ function play(guild, song) {
   serverQueue.textChannel.sendEmbed(
     new Discord.RichEmbed()
       .setTitle(
-        `** | 🎙 Müzik Başladı**`,
+        `**${isimloz} | 🎙 Müzik Başladı**`,
         `https://cdn.discordapp.com/avatars/473974675194511361/6bb90de9efe9fb80081b185266bb94a6.png?size=2048`
       )
       .setThumbnail(
@@ -403,8 +405,8 @@ function play(guild, song) {
 //////////////////
 
 client.on("ready", () => {
-    console.log("Ready !");
-    client.user.setActivity(`S𝕖𝕟𝕚𝕟𝕝𝕖 B𝕚𝕣𝕝𝕚𝕜𝕥𝕖`, {type: "LISTENING"})
+    console.log(`${isimloz} Artık Hazır.`);
+    client.user.setActivity(`${oynuyorloz}`, {type: "LISTENING"})
 });
 
 client.elevation = message => {
