@@ -183,6 +183,7 @@ client.on("message", async msg => {
             );
           }
           const videoIndex = parseInt(response.first().content);
+          var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
         } catch (err) {
           console.error(err);
           return msg.channel.sendEmbed(
@@ -192,7 +193,8 @@ client.on("message", async msg => {
           );
         }
       }
-      return handleVideo(video, msg, voiceChannel);
+      msg.channel.send("Denemeeeg");
+      return handleVideo(video, reaction.emoji.name === "2️⃣", voiceChannel);
     }
   } else if (command === `${skiploz}`) {
     if (!msg.member.voiceChannel)
