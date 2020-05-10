@@ -117,7 +117,20 @@ client.on("message", async msg => {
           var videos = await youtube.searchVideos(searchString, 10);
           let index = 0;
 
-          msg.channel.sendEmbed(
+                    msg.delete()
+  msg.channel.send("Müzik Aramayı Onaylıyormusunuz?").then(async function(sentEmbed) {
+    const emojiArray = ["✅"];
+    const filter = (reaction, user) =>
+      emojiArray.includes(reaction.emoji.name) && user.id === msg.author.id;
+    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    var reactions = sentEmbed.createReactionCollector(filter, {
+      time: 30000
+    });
+    reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!"));
+    reactions.on("collect", async function(reaction) {
+      if (reaction.emoji.name === "✅") {
+  
+                  msg.channel.sendEmbed(
             new Discord.RichEmbed()
               .setTitle(`${isimloz} | Şarkı Seçimi`)
               .setDescription(
@@ -130,6 +143,11 @@ client.on("message", async msg => {
               )
               .setColor("0x36393E")
           );
+
+      }
+    });
+  }); 
+          
           msg.delete(5000);
           try {
             var response = await msg.channel.awaitMessages(
@@ -206,6 +224,39 @@ client.on("message", async msg => {
     serverQueue.connection.dispatcher.end("**Müzik Bitti**");
     return undefined;
   } else if (command === `${volumeloz}`) {
+      msg.channel.send(new Discord.RichEmbed()
+        .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
+        .setColor("RANDOM")).then(async function(sentEmbed) {
+    const emojiArray = ["1️⃣", "2️⃣", "3️⃣"];
+    const filter = (reaction, user) =>
+      emojiArray.includes(reaction.emoji.name) && user.id === msg.author.id;
+    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    await sentEmbed.react(emojiArray[1]).catch(function() {});
+    await sentEmbed.react(emojiArray[2]).catch(function() {});
+    var reactions = sentEmbed.createReactionCollector(filter, {
+      time: 30000
+    });
+    reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!"));
+    reactions.on("collect", async function(reaction) {
+      if (reaction.emoji.name === "1️⃣") {
+  
+        msg.channel.send("1 Seçildi")
+
+      }
+            if (reaction.emoji.name === "2️⃣") {
+
+        msg.channel.send("2 Seçildi")
+
+      }
+            if (reaction.emoji.name === "3️⃣") {
+
+        msg.channel.send("3 Seçildi")
+
+      }
+    });
+  }); 
+    
+    
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -229,11 +280,7 @@ client.on("message", async msg => {
       );
     serverQueue.volume = args[1];
     serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
-    return msg.channel.sendEmbed(
-      new Discord.RichEmbed()
-        .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
-        .setColor("RANDOM")
-    );
+    
   } else if (command === `${playingloz}`) {
     if (!serverQueue)
       return msg.channel.sendEmbed(
