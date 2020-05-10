@@ -224,10 +224,11 @@ client.on("message", async msg => {
     serverQueue.connection.dispatcher.end("**Müzik Bitti**");
     return undefined;
   } else if (command === `${volumeloz}`) {
+    msg.delete()
       msg.channel.send(new Discord.RichEmbed()
-        .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
-        .setColor("RANDOM")).then(async function(sentEmbed) {
-    const emojiArray = ["1️⃣", "2️⃣", "3️⃣"];
+          .setTitle(`:warning: Şuanki Ses Seviyesi: **${serverQueue.volume}**`)
+          .setColor("RANDOM")).then(async function(sentEmbed) {
+    const emojiArray = ["0️⃣", "5️⃣", "💯"];
     const filter = (reaction, user) =>
       emojiArray.includes(reaction.emoji.name) && user.id === msg.author.id;
     await sentEmbed.react(emojiArray[0]).catch(function() {});
@@ -238,49 +239,41 @@ client.on("message", async msg => {
     });
     reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!"));
     reactions.on("collect", async function(reaction) {
-      if (reaction.emoji.name === "1️⃣") {
+      if (reaction.emoji.name === "0️⃣") {
   
-        msg.channel.send("1 Seçildi")
+            serverQueue.volume = "0";
+    serverQueue.connection.dispatcher.setVolumeLogarithmic(0 / 5);
+    return msg.channel.sendEmbed(
+      new Discord.RichEmbed()
+        .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **0**`)
+        .setColor("RANDOM")
+    );
 
       }
-            if (reaction.emoji.name === "2️⃣") {
+            if (reaction.emoji.name === "5️⃣") {
 
-        msg.channel.send("2 Seçildi")
+                    serverQueue.volume = "5";
+    serverQueue.connection.dispatcher.setVolumeLogarithmic(5 / 5);
+    return msg.channel.sendEmbed(
+      new Discord.RichEmbed()
+        .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **5**`)
+        .setColor("RANDOM")
+    );
 
       }
-            if (reaction.emoji.name === "3️⃣") {
+            if (reaction.emoji.name === "💯") {
 
-        msg.channel.send("3 Seçildi")
+                    serverQueue.volume = "100";
+    serverQueue.connection.dispatcher.setVolumeLogarithmic(100 / 5);
+    return msg.channel.sendEmbed(
+      new Discord.RichEmbed()
+        .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **100**`)
+        .setColor("RANDOM")
+    );
 
       }
     });
   }); 
-    
-    
-    if (!msg.member.voiceChannel)
-      if (!msg.member.voiceChannel)
-        return msg.channel.sendEmbed(
-          new Discord.RichEmbed()
-            .setColor("RANDOM")
-            .setDescription(
-              ":warning: **| Lütfen öncelikle sesli bir kanala katılınız.**"
-            )
-        );
-    if (!serverQueue)
-      return msg.channel.sendEmbed(
-        new Discord.RichEmbed()
-          .setColor("RANDOM")
-          .setTitle(":warning:| **Hiç Bir Müzik Çalmamakta**")
-      );
-    if (!args[1])
-      return msg.channel.sendEmbed(
-        new Discord.RichEmbed()
-          .setTitle(`:warning: Şuanki Ses Seviyesi: **${serverQueue.volume}**`)
-          .setColor("RANDOM")
-      );
-    serverQueue.volume = args[1];
-    serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
-    
   } else if (command === `${playingloz}`) {
     if (!serverQueue)
       return msg.channel.sendEmbed(
