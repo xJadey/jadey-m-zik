@@ -114,7 +114,7 @@ client.on("message", async msg => {
         var video = await youtube.getVideo(url);
       } catch (error) {
         try {
-          var videos = await youtube.searchVideos(searchString, 10);
+          var videos = await youtube.searchVideos(searchString, 3);
           let index = 0;
 
           msg.channel.sendEmbed(
@@ -130,13 +130,16 @@ client.on("message", async msg => {
               )
               .setColor("0x36393E")
           );
-          msg.delete(5000);
+          msg.react('1️⃣');
+          msg.react('2️⃣');
+          msg.react('3️⃣');
+          msg.delete(20000);
           try {
             var response = await msg.channel.awaitMessages(
               msg2 => msg2.content > 0 && msg2.content < 11,
               {
                 maxMatches: 1,
-                time: 10000,
+                time: 20000,
                 errors: ["time"]
               }
             );
