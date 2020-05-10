@@ -138,33 +138,24 @@ client.on("message", async msg => {
     const filter = (reaction, user) =>
       emojiArray.includes(reaction.emoji.name) && user.id === msg.author.id;
     await sentEmbed.react(emojiArray[0]).catch(function() {});
-    await sentEmbed.react(emojiArray[0]).catch(function() {});
-    await sentEmbed.react(emojiArray[0]).catch(function() {});
+    await sentEmbed.react(emojiArray[1]).catch(function() {});
+    await sentEmbed.react(emojiArray[2]).catch(function() {});
     var reactions = sentEmbed.createReactionCollector(filter, {
       time: 30000
     });
     reactions.on("end", () => sentEmbed.edit("İşlem iptal oldu!"));
     reactions.on("collect", async function(reaction) {
       if (reaction.emoji.name === "1️⃣") {
-        msg.channel.send(
-          `İşlem onaylandı!  adlı şahsın davetleri sıfırlandı!`
-        );
-
+  
         msg.channel.send("1 Seçildi")
 
       }
             if (reaction.emoji.name === "2️⃣") {
-        msg.channel.send(
-          `İşlem onaylandı!  adlı şahsın davetleri sıfırlandı!`
-        );
 
         msg.channel.send("2 Seçildi")
 
       }
             if (reaction.emoji.name === "3️⃣") {
-        msg.channel.send(
-          `İşlem onaylandı!  adlı şahsın davetleri sıfırlandı!`
-        );
 
         msg.channel.send("3 Seçildi")
 
@@ -192,7 +183,6 @@ client.on("message", async msg => {
             );
           }
           const videoIndex = parseInt(response.first().content);
-          var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
         } catch (err) {
           console.error(err);
           return msg.channel.sendEmbed(
