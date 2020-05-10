@@ -23,9 +23,23 @@ const fs = require("fs");
 const moment = require("moment");
 const Jimp = require("jimp");
 const db = require("quick.db");
-
 var prefix = ayarlar.prefix;
 
+
+// ISIM \\
+const isimloz = "Code Music";
+// ISIM \\
+
+// KOMUTLAR \\
+const playloz = "çal";
+const skiploz = "geç";
+const playingloz = "çalan-ne";
+const volumeloz = "ses";
+const queueloz = "sıra";
+const stoploz = "bitir";
+const pauseloz = "durdur";
+const goloz = "devam";
+// KOMUTLAR \\
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
@@ -51,7 +65,7 @@ client.on("message", async msg => {
   let command = msg.content.toLowerCase().split(" ")[0];
   command = command.slice(prefix.length);
 
-  if (command === "play") {
+  if (command === `${playloz}`) {
     const voiceChannel = msg.member.voiceChannel;
     if (!voiceChannel)
       return msg.channel.sendEmbed(
@@ -147,7 +161,7 @@ client.on("message", async msg => {
       }
       return handleVideo(video, msg, voiceChannel);
     }
-  } else if (command === "skip") {
+  } else if (command === `${skiploz}`) {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -167,7 +181,7 @@ client.on("message", async msg => {
       );
     serverQueue.connection.dispatcher.end("**Müziği Geçtim!**");
     return undefined;
-  } else if (command === "stop") {
+  } else if (command === `${stoploz}`) {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -189,7 +203,7 @@ client.on("message", async msg => {
     serverQueue.songs = [];
     serverQueue.connection.dispatcher.end("**Müzik Bitti**");
     return undefined;
-  } else if (command === "volume") {
+  } else if (command === `${volumeloz}`) {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
@@ -218,7 +232,7 @@ client.on("message", async msg => {
         .setTitle(`:hammer:  Ses Seviyesi Ayarlanıyor: **${args[1]}**`)
         .setColor("RANDOM")
     );
-  } else if (command === "playing") {
+  } else if (command === `${playingloz}`) {
     if (!serverQueue)
       return msg.channel.sendEmbed(
         new Discord.RichEmbed()
@@ -240,7 +254,7 @@ client.on("message", async msg => {
           true
         )
     );
-  } else if (command === "queue") {
+  } else if (command === `${queue}`) {
     let index = 0;
     if (!serverQueue)
       return msg.channel.sendEmbed(
@@ -260,7 +274,7 @@ client.on("message", async msg => {
           )
       )
       .addField("Şu anda çalınan: " + `${serverQueue.songs[0].title}`);
-  } else if (command === "pause") {
+  } else if (command === `${pauseloz}`) {
     if (serverQueue && serverQueue.playing) {
       serverQueue.playing = false;
       serverQueue.connection.dispatcher.pause();
@@ -271,7 +285,7 @@ client.on("message", async msg => {
       );
     }
     return msg.channel.send(":warning: | **Çalan Müzik Bulunmamakta**");
-  } else if (command === "go") {
+  } else if (command === `${goloz}`) {
     if (serverQueue && !serverQueue.playing) {
       serverQueue.playing = true;
       serverQueue.connection.dispatcher.resume();
@@ -373,7 +387,7 @@ function play(guild, song) {
   serverQueue.textChannel.sendEmbed(
     new Discord.RichEmbed()
       .setTitle(
-        "**ENERGY MUSIC | 🎙 Müzik Başladı**",
+        `** | 🎙 Müzik Başladı**`,
         `https://cdn.discordapp.com/avatars/473974675194511361/6bb90de9efe9fb80081b185266bb94a6.png?size=2048`
       )
       .setThumbnail(
@@ -390,7 +404,7 @@ function play(guild, song) {
 
 client.on("ready", () => {
     console.log("Ready !");
-    client.user.setActivity(`𝕜𝕕!𝕡𝕝𝕒𝕪 - 𝕤𝕖𝕟𝕚𝕟𝕝𝕖 𝕓𝕚𝕣𝕝𝕚𝕜𝕥𝕖`, {type: "LISTENING"})
+    client.user.setActivity(`S𝕖𝕟𝕚𝕟𝕝𝕖 B𝕚𝕣𝕝𝕚𝕜𝕥𝕖`, {type: "LISTENING"})
 });
 
 client.elevation = message => {
