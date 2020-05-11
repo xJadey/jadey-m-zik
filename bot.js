@@ -32,6 +32,7 @@ const oynuyorloz = "Code Music";
 // ISIM \\
 
 // KOMUTLAR \\
+const yardımloz = "yardım";
 const playloz = "çal";
 const skiploz = "geç";
 const playingloz = "çalan-ne";
@@ -201,7 +202,28 @@ client.on("message", async msg => {
       );
     serverQueue.connection.dispatcher.end("**Müziği Geçtim!**");
     return undefined;
-  } else if (command === `${stoploz}`) {
+  } else if(command === `${yardımloz}`){
+      msg.delete();
+  const baslik = client.emojis.get('699733250947416085'); // Başlık Emojisinin ID'si Buraya
+  const emoji = client.emojis.get('705027827707281428'); // Komutların Başına Gelcek ID Buraya
+  
+  const yardım = new Discord.RichEmbed()
+.setDescription(`
+${baslik} **GENEL KOMUTLAR** ${baslik}
+
+[${emoji}] !çal <- Müziği Bulur Ve Çalar.
+
+[${emoji}] !bitir <- Müziği Bitirir.
+
+[${emoji}] !durdur  <- Müziği Durdurur.
+
+[${emoji}] !geç  <- Müzik Atlar Bi Sonraki Müzigi Açar.
+
+[${emoji}] !ses  <- Ses Seviyesini Belirler.
+`,true);
+  
+  msg.channel.send(yardım);
+} else if (command === `${stoploz}`) {
     if (!msg.member.voiceChannel)
       if (!msg.member.voiceChannel)
         return msg.channel.sendEmbed(
